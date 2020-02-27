@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class CarCostCalculation {
 
 	public static void main(String[] args) {
