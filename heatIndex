@@ -1,0 +1,62 @@
+import java.util.Scanner;
+public class heatIndex {
+
+    public static void main(String args[])
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Relative Humidity (%)                    Temperature (F)                      ");
+        System.out.printf("     ");
+        for (int T = 80; T<=110;T+=2)
+        {
+            System.out.printf("%5d",T);
+        }
+        System.out.println();
+        System.out.println("_____________________________________________________________________________________");
+        for (int RH = 40; RH <= 100; RH+=5)
+        {
+            System.out.printf("%2d | ", RH);
+
+            for (int T = 80; T<=110;T+=2) {
+                double heatIndex = Math.round(-42.379 + 2.04901523*T + 10.14333127*RH - .22475541*T*RH - .00683783*T*T - .05481717*RH*RH + .00122874*T*T*RH + .00085282*T*RH*RH - .00000199*T*T*RH*RH);
+                if(heatIndex >= 138)
+                {
+                    System.out.print("  ");
+                }
+                else
+                {
+                    System.out.printf("%5d", (int)heatIndex);
+                }
+
+            }
+            System.out.println();
+        }
+        int userTemp = -1;
+        while(true)
+        {
+
+            System.out.print("Enter temperature or 0 to end: ");
+            userTemp = scan.nextInt();
+            if (0 == userTemp)
+            {
+                System.out.print("Program Terminated");
+                break;
+            }
+            System.out.print("Enter relative humidity: ");
+            int userHum = scan.nextInt();
+            double userThi = Math.floor(-42.379 + 2.04901523 * userTemp + 10.14333127 * userHum - .22475541 * userTemp * userHum - .00683783 * userTemp * userTemp - .05481717 * userHum * userHum + .00122874 * userTemp * userTemp * userHum + .00085282 * userTemp * userHum * userHum - .00000199 * userTemp * userTemp * userHum * userHum);
+            if (userThi > 0 && userThi <= 90) {
+                System.out.println("The THI for a temperature of " + userTemp + " and relative humidity of " + userHum + " is: " + userThi + " Advisory: Caution");
+            }
+            if (userThi > 90 && userThi < 105) {
+                System.out.println("The THI for a temperature of " + userTemp + " and relative humidity of " + userHum + " is: " + userThi + " Advisory: Extreme Caution");
+            }
+            if (userThi >= 105 && userThi < 126) {
+                System.out.println("The THI for a temperature of " + userTemp + " and relative humidity of " + userHum + " is: " + userThi + " Advisory: Danger");
+            }
+            if (userThi >= 126) {
+                System.out.println("The THI for a temperature of " + userTemp + " and relative humidity of " + userHum + " is: " + userThi + " Advisory: Extreme Danger");
+            }
+        }
+    }
+
+    }
