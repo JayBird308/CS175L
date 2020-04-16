@@ -1,0 +1,54 @@
+import org.w3c.dom.css.Counter;
+
+public class CounterTester {
+
+    public static class CounterTester {
+
+        public static void main(String[] args) {
+            Counter venue = new Counter();
+            int rValue=venue.getValue();
+            System.out.println(rValue);
+
+            int i = 0;
+            while (i <= 10)
+            {
+                venue.click();
+                i++;
+            }
+
+            int i2 = 0;
+
+            while (i <= 5)
+            {
+                venue.unclick();
+                i2++;
+            }
+
+
+            rValue=venue.getValue();
+            System.out.println("Expected venue: 5");
+            System.out.println("Actual Value: " + rValue);
+
+            i = 0;
+            while(i<=3)
+            {
+                venue.click();
+                i++;
+            }
+
+            i2=0;
+            while(i2<=4)
+            {
+                venue.unclick();
+                i2++;
+            }
+
+            rValue=venue.getValue();
+
+            System.out.println("Expected venue: -1");
+            System.out.println("Actual value: " + rValue);
+        }
+
+    }
+
+}
